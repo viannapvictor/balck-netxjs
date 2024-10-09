@@ -2,7 +2,7 @@ import { GetStaticProps, NextPage } from "next"
 import { ReactNode, useEffect, useState } from "react"
 import { Col, Container, Row } from "reactstrap"
 
-interface ApiResponse {
+type ApiResponse = {
   name: string
   timestamp: Date
 }
@@ -30,8 +30,12 @@ const Statics: NextPage = (props: {
   }, [])
 
   const fetchData = async () => {
-    const data = await fetch(`/api/hello`).then(res => res.json())
-    setClientSideData(data)
+    try {
+      const data = await fetch(`/api/hello`).then(res => res.json())
+      setClientSideData(data)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
