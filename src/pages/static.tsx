@@ -30,7 +30,7 @@ const Static: NextPage = (props: {
   }, [])
 
   const fetchData = async () => {
-    const data = await fetch(`/api/hello`).then(res => res.json())
+    const data = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/hello`).then(res => res.json())
     setClientSideData(data)
   }
 
