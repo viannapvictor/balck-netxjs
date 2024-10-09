@@ -2,19 +2,19 @@ import { GetStaticProps, NextPage } from "next"
 import { ReactNode, useEffect, useState } from "react"
 import { Col, Container, Row } from "reactstrap"
 
-type ApiResponse = {
+interface ApiResponse {
   name: string
   timestamp: Date
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-
-  const staticData: ApiResponse = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/hello`).then(res => res.json())
+  const staticData = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/hello`).then(res => res.json())
 
   return {
     props: {
       staticData
-    }
+    },
+    revalidate: 10
   }
 }
 
