@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Static: NextPage = (props: {
+const Statics: NextPage = (props: {
   children?: ReactNode
   staticData?: ApiResponse
 }) => {
@@ -57,4 +57,4 @@ const Static: NextPage = (props: {
   )
 }
 
-export default Static
+export default Statics
