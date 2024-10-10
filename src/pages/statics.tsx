@@ -43,7 +43,7 @@ const Statics: NextPage = (props: {
       <Row>
         <Col>
           <h3>
-            Gerado estaticamente durante o build:
+            Gerado estaticamente durante o build: {props?.staticData?.name.toString()}
           </h3>
         </Col>
 
