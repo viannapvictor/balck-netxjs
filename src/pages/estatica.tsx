@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from "next"
-import { useEffect, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { Col, Container, Row } from "reactstrap"
 
 interface ApiResponse {
@@ -11,14 +11,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const staticData = await fetch(`${process.env.NEXT_PUBLIC_APIURL}/api/hello`).then(res => res.json())
 
   return {
-    props: {
-      staticData
-    },
-    revalidate: 10
+    props: { staticData },
+    revalidate: 10,
   }
 }
 
-const Statics: NextPage = () => {
+const Estatica: NextPage = (props: {
+  children?: ReactNode
+  staticData?: ApiResponse
+}) => {
 
   const [clientSideData, setClientSideData] = useState<ApiResponse>()
 
@@ -40,7 +41,7 @@ const Statics: NextPage = () => {
       <Row>
         <Col>
           <h3>
-            Gerado estaticamente durante o build:
+            Gerado estaticamente durante o build: {props.staticData?.timestamp.toString()}
           </h3>
         </Col>
 
@@ -54,4 +55,4 @@ const Statics: NextPage = () => {
   )
 }
 
-export default Statics
+export default Estatica
